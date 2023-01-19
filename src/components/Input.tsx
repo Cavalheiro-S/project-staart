@@ -44,7 +44,7 @@ const InputRoot = ({ children, className }: InputRootProps) => {
 const InputIcon = ({ children, className }: InputIconProps) => {
 
   return (
-    <Slot className={clsx("w-7 h-7 pl-1", className)}>
+    <Slot className={clsx("w-7 h-7 pl-1 group-focus-within:text-primary transition", className)}>
       {children}
     </Slot>
   )
