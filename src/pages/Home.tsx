@@ -27,7 +27,7 @@ export const Home = () => {
                 <ChromeReaderModeOutlined className="text-primary" />
                 <Heading className="text-font">Jornadas de aprendizado</Heading>
             </div>
-            <Text className="text-gray-500">Selecione uma jornada para começar</Text>
+            <Text className="text-gray-500 mt-1">Selecione uma jornada para começar</Text>
             <div className="flex gap-20 flex-wrap py-20">
                 {renderJourneys()}
             </div>
