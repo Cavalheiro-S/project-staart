@@ -20,12 +20,13 @@ export const Signup = () => {
             confirmPassword: false
         }
     );
-
+    const [loading, setLoading] = useState(false);
     const { register, handleSubmit, formState: { errors }, setError } = useForm<Inputs>();
     const { signUp } = useAuth();
     const navigate = useNavigate();
     const onSubmit: SubmitHandler<Inputs> = async (data, event) => {
         try {
+            setLoading(true);
             event?.preventDefault();
             await signUp(data.email, data.password);
             navigate("/home");
@@ -35,6 +36,7 @@ export const Signup = () => {
             if (error instanceof FirebaseError)
                 setError("name", { type: "manual", message: returnErrorMessage(error.code) })
         }
+        setLoading(false);
     }
     const handleShowPassword = (event: SyntheticEvent, inputName: "password" | "confirmPassword") => {
         const input = event.currentTarget.previousElementSibling as HTMLInputElement;
@@ -93,7 +95,8 @@ export const Signup = () => {
                     </Input.Root>
                 </label>
                 <div className="flex flex-col gap-4">
-                    <Button.Root className="w-full">
+                    <Button.Root className="w-full" disabled={loading}>
+                        {loading ? <Button.Loading /> : null}
                         Criar conta
                     </Button.Root>
                 </div>

@@ -71,10 +71,8 @@ export const Signin = () => {
                     </Text>
                 </label>
                 <div className="flex flex-col gap-4">
-                    <Button.Root type="submit" className="w-full">
-                        {loading && (
-                            <Button.Icon><HourglassEmptyOutlined className="animate-spin" /></Button.Icon>
-                        )}
+                    <Button.Root type="submit" className="w-full" disabled={loading}>
+                        {loading && <Button.Loading />}
                         Entrar
                     </Button.Root>
                     <div className="text-center">

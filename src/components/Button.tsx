@@ -1,3 +1,4 @@
+import { HourglassEmptyOutlined } from "@mui/icons-material"
 import { Slot } from "@radix-ui/react-slot"
 import clsx from "clsx"
 import React from "react"
@@ -23,6 +24,12 @@ export const ButtonIcon = ({ children, className }: ButtonIconProps) => {
     )
 }
 
+export const ButtonLoading = () => {
+    return(
+        <Button.Icon><HourglassEmptyOutlined className="animate-spin" /></Button.Icon>
+    )
+}
+
 export const ButtonRoot = React.forwardRef<HTMLButtonElement, ButtonRootProps>(({ children, className, styleType = "primary", ...props }, ref) => {
 
     return (
@@ -42,5 +49,6 @@ export const ButtonRoot = React.forwardRef<HTMLButtonElement, ButtonRootProps>((
 
 export const Button = {
     Root: ButtonRoot,
+    Loading: ButtonLoading,
     Icon: ButtonIcon,
 }

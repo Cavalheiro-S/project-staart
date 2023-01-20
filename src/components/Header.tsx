@@ -6,7 +6,7 @@ import { Text } from "./Text"
 
 export const Header = () => {
     return (
-        <header className="grid shadow-sm grid-cols-3 grid-rows-1 px-10 h-[10vh]">
+        <header className="grid shadow-sm grid-cols-3 grid-rows-1 px-20 h-[10vh]">
             <div className="flex items-center gap-4">
                 <Heading className="text-primary">Staart Projetos</Heading>
             </div>
