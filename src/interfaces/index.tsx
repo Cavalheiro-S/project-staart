@@ -18,3 +18,25 @@ export enum JourneySlug {
     "habilidades-digitais",
     "jornada-de-dados"
 }
+
+export interface Course {
+    medias:{
+        thumb: string;
+    }
+    title: string;
+    description: string;
+    instructor: string;
+    tags: string[];
+    duration: number;
+    level: string;
+    id: string;
+    extras: string[];
+    modules: Module[];
+}
+
+export interface Module {
+    lessonsID: string[];
+    order: Array<{lessonID: string}>;
+    title: string;
+    description: string;
+}

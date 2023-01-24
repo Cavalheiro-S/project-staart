@@ -30,7 +30,7 @@ export const Signin = () => {
             setLoading(true);
             event?.preventDefault();
             await signIn(data.email, data.password);
-            navigate("/home");
+            navigate("/journeys");
         }
         catch (error) {
             if (error instanceof FirebaseError)

@@ -3,12 +3,12 @@ import { FirebaseError } from "firebase/app";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../components/Button";
-import { Heading } from "../components/Heading";
-import { Input } from "../components/Input";
-import { Text } from "../components/Text";
-import { useAuth } from "../hooks/useAuth";
-import { returnErrorMessage } from "../services/firebase";
+import { Button } from "../../components/Button";
+import { Heading } from "../../components/Heading";
+import { Input } from "../../components/Input";
+import { Text } from "../../components/Text";
+import { useAuth } from "../../hooks/useAuth";
+import { returnErrorMessage } from "../../services/firebase";
 
 
 export const ForgetPassword = () => {

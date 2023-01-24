@@ -1,4 +1,9 @@
-import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    sendPasswordResetEmail, 
+    signInWithEmailAndPassword, 
+    signOut as SignOut,
+} from "firebase/auth";
 import { auth } from "../services/firebase";
 
 export const useAuth = () => {
@@ -15,5 +20,9 @@ export const useAuth = () => {
     const recoverPassword = (email: string) => {
         return sendPasswordResetEmail(auth, email);
     }
-    return { currentUser, signUp, signIn, recoverPassword };
+
+    const signOut = () => {
+        return SignOut(auth);
+    }
+    return { currentUser, signUp, signIn, recoverPassword, signOut };
 }
