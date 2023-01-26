@@ -49,7 +49,7 @@ export const Signin = () => {
                     Email
                     <Input.Root>
                         <Input.Icon><EmailOutlined className="text-gray-500 ml-2" /></Input.Icon>
-                        <Input.Input {...register("email")} />
+                        <Input.Input {...register("email", { required: "É necessário preencher o email" })} />
                     </Input.Root>
                     {errors.email && <Text className="text-red-500">{errors.email.message}</Text>}
                 </label>
@@ -57,7 +57,7 @@ export const Signin = () => {
                     Senha
                     <Input.Root>
                         <Input.Icon><LockOutlined className="text-gray-500 ml-2" /></Input.Icon>
-                        <Input.Input {...register("password")} type="password" />
+                        <Input.Input {...register("password", { required: "É necessário preencher a senha" })} type="password" />
                         <Input.Icon>
                             {showPassword ? (
                                 <RemoveRedEyeOutlined className="text-font mr-2" onClick={handleShowPassword} />
@@ -66,6 +66,7 @@ export const Signin = () => {
                             )}
                         </Input.Icon>
                     </Input.Root>
+                    {errors.password && <Text className="text-red-500">{errors.password.message}</Text>}
                     <Text className="text-end" asChild>
                         <Link to="/forgetPassword">Esqueceu sua senha ?</Link>
                     </Text>

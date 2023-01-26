@@ -6,7 +6,7 @@ export const Container = () => {
     return (
         <>
             <Header />
-            <main className="h-full px-20 py-12">
+            <main className="h-full px-3 md:px-20 py-3 md:py-12">
                 <Outlet />
             </main>
         </>

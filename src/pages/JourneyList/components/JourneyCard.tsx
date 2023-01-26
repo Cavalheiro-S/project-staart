@@ -17,7 +17,7 @@ export const JourneyCard = ({ journey }: { journey: Journey }) => {
     useEffect(() => {
         const color = returnColorByJourneyTitle(journey.title)
         setColor(color)
-    }, [])
+    }, [journey.title])
 
     return (
         <div

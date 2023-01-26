@@ -6,7 +6,7 @@ import { Heading } from "../../components/Heading"
 import { Text } from "../../components/Text"
 import { Course } from "../../interfaces"
 import { api } from "../../services/axios"
-import { toTimeString } from "../../utils"
+import { toTimeString, verifyTextSize } from "../../utils"
 import { CourseBanner } from "../JourneyPage/components/CourseBanner"
 
 interface ModulesFilled {
@@ -81,11 +81,11 @@ export const CoursePage = () => {
         const lessons = module?.lessons.map((lesson, index) => {
             return (
                 <Accordion key={index}>
-                    <AccordionDetails className="flex ml-12 gap-4 items-center">
+                    <AccordionDetails className="flex flex-col md:flex-row ml-12 gap-4 md:items-center">
                         <PlayCircleOutlineOutlined className="text-primary" />
                         <div className="flex flex-col">
                             <Text>{lesson.title}</Text>
-                            <Text className="text-gray-500">{lesson.description}</Text>
+                            <Text className="text-gray-500">{verifyTextSize(lesson.description, 50)}</Text>
                         </div>
                     </AccordionDetails>
                 </Accordion>

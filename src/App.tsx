@@ -1,3 +1,5 @@
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./assets/styles/materialStyles";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AppRoutes } from "./routes";
 import "./styles/global.css";
@@ -5,9 +7,11 @@ function App() {
 
   return (
     <div className="App">
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
+      <ThemeProvider theme={theme}>
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
+      </ThemeProvider>
     </div>
   )
 }
