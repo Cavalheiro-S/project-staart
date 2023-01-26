@@ -23,11 +23,11 @@ export const JourneyCard = ({ journey }: { journey: Journey }) => {
         <div
             onClick={() => navigate("/journey/" + journey.pathID)}
             className={
-                clsx("flex flex-col gap-4 justify-between items-start max-w-xs p-4 rounded transition", {
-                    'hover:bg-red-100': journey.title === 'Desenvolvimento Back End',
-                    'hover:bg-teal-100': journey.title === 'Desenvolvimento Front End',
-                    'hover:bg-purple-100': journey.title === 'Habilidades Digitais',
-                    'hover:bg-green-100': journey.title === 'Dados'
+                clsx("flex flex-col gap-4 justify-between items-start max-w-xs py-4 md:p-4 rounded transition", {
+                    'md:hover:bg-red-100': journey.title === 'Desenvolvimento Back End',
+                    'md:hover:bg-teal-100': journey.title === 'Desenvolvimento Front End',
+                    'md:hover:bg-purple-100': journey.title === 'Habilidades Digitais',
+                    'md:hover:bg-green-100': journey.title === 'Dados'
 
                 })}>
             <img className="w-12" src={journey.medias.thumb} alt={journey.title} />

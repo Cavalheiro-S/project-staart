@@ -7,6 +7,7 @@ import { Text } from "../../components/Text"
 import { Journey } from "../../interfaces"
 import { api } from "../../services/axios"
 import { JourneyCard } from "./components/JourneyCard"
+import { SelectFilter } from "./components/SelectFilter"
 
 export const JourneyList = () => {
     const [journeys, setJourneys] = useState<Journey[]>([]);
@@ -31,7 +32,6 @@ export const JourneyList = () => {
     }, [])
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-
         const filter = event.target.value as string;
         setFilterValue(filter);
     };
@@ -60,38 +60,18 @@ export const JourneyList = () => {
         return journeysFiltered.map((journey, index) => <JourneyCard key={index} journey={journey} />)
     }
     return loading ? <Loading /> : (
-        <div className="flex flex-col w-full h-[90vh] text-font gap-3 md:gap-6">
-            <div>
-                <div className="flex flex-col md:flex-row md:gap-4 md:items-center mt-3 md:mt-0">
-                    <ChromeReaderModeOutlined className="text-primary" />
+        <div className="flex flex-col w-full h-[90vh] text-font gap-6">
+            <div className="flex flex-col">
+                <div className="flex flex-col md:flex-row md:gap-4 md:items-center mt-0">
+                    <div className="p-3 bg-primaryHover w-fit rounded-full">
+                        <ChromeReaderModeOutlined className="text-primary" />
+                    </div>
                     <Heading className="text-font">Jornadas de aprendizado</Heading>
                 </div>
                 <Text className="text-gray-500">Selecione uma jornada para começar</Text>
             </div>
-            <FormControl className="flex flex-col items-start">
-                <Text asChild>
-                    <FormLabel component="legend">
-                        Filtrar por:
-                    </FormLabel>
-                </Text>
-                <TextField
-                    sx={{ margin: '0.5rem 0' }}
-                    className="w-full md:w-fit"
-                    select
-                    size="small"
-                    value={filterValue}
-                    InputProps={{
-                        startAdornment: <FilterListOutlined className="text-primary mr-2" />
-                    }}
-                    onChange={handleChange}>
-                    <MenuItem value="standard">Padrão</MenuItem>
-                    <MenuItem value="alphabetic">Alfabética</MenuItem>
-                    <MenuItem value="courseTotal">Total de Cursos</MenuItem>
-                </TextField>
-            </FormControl>
-            <div className="flex md:gap-20 flex-wrap">
-                {renderJourneys()}
-            </div>
+            <SelectFilter filterValue={filterValue} handleChange={handleChange} />
+            <div className="flex md:gap-20 flex-wrap">{renderJourneys()}</div>
         </div>)
 
 }

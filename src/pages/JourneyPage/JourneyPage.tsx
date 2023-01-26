@@ -62,7 +62,7 @@ export const JourneyPage = () => {
 
     const renderCourseList = () => {
         return (
-            <div className=" hidden md:flex flex-col flex-1  max-h-96 overflow-y-scroll col-start-1">
+            <div className=" flex flex-col flex-1  max-h-96 overflow-y-scroll col-start-1">
                 {courses?.map((course, index) => (
                     <CourseCard
                         onClick={() => courseSelectedHandler(course)}
@@ -76,7 +76,7 @@ export const JourneyPage = () => {
     }
 
     return loading ? <Loading /> : (
-        <div className="flex flex-col gap-4 md:grid md:grid-cols-3 grid-rows-2">
+        <div className="flex flex-col gap-4 md:grid md:grid-cols-2 grid-rows-2">
             <div className="flex flex-col col-span-1 row-start-1 gap-4">
                 <div>
                     {journey?.medias.thumb && <img src={journey?.medias.thumb} className="w-12 md:block" alt="thumb" />}
@@ -103,10 +103,10 @@ export const JourneyPage = () => {
                     </div>
                 </div>
             </div>
-            {renderCourseList()}
-            <div className=" md:ml-20 col-start-1 md:col-start-2 md:row-start-1">
+            <div className=" col-start-1 md:col-start-2 md:row-start-1">
                 <CourseBanner course={courseSelected} />
             </div>
+            {renderCourseList()}
         </div>
     )
 
