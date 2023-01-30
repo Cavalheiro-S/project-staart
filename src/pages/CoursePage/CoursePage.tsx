@@ -1,16 +1,17 @@
-import { AccessTimeOutlined, ArrowForwardIosOutlined, CalendarTodayOutlined, PlayCircleOutlineOutlined, SchoolOutlined, TimerOutlined } from "@mui/icons-material"
-import { Breadcrumbs } from "@mui/material"
+import { ArrowForwardIosOutlined, CalendarTodayOutlined, PlayCircleOutlineOutlined, SchoolOutlined, TimerOutlined } from "@mui/icons-material";
+import { Breadcrumbs } from "@mui/material";
 import * as Accordion from '@radix-ui/react-accordion';
 import clsx from "clsx";
-import { useEffect, useState } from "react"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import { Link, useParams } from "react-router-dom"
-import { Heading } from "../../components/Heading"
+import { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link, useParams } from "react-router-dom";
+import { Heading } from "../../components/Heading";
 import { Loading } from "../../components/Loading";
-import { Text } from "../../components/Text"
-import { Course, Journey } from "../../interfaces"
-import { api } from "../../services/axios"
-import { toTimeString, verifyTextSize } from "../../utils"
+import { Text } from "../../components/Text";
+import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+import { Course, Journey } from "../../interfaces";
+import { api } from "../../services/axios";
+import { toTimeString, verifyTextSize } from "../../utils";
 
 interface ModulesFilled {
     modules: {
@@ -38,7 +39,7 @@ export const CoursePage = () => {
         courseId: string,
         journeyId: string
     }>()
-
+    const { width } = useWindowDimensions();
     useEffect(() => {
         try {
             setLoading(true);
@@ -78,7 +79,7 @@ export const CoursePage = () => {
                         <Accordion.Trigger className="flex py-6 w-full h-full">
                             <ArrowForwardIosOutlined className={clsx("transition", {
                                 "rotate-90": expanded.includes(module.title)
-                            })}/>
+                            })} />
                             <Heading className="ml-2" size="sm">{module.title}</Heading>
                         </Accordion.Trigger>
                         <Accordion.Content>
@@ -94,11 +95,13 @@ export const CoursePage = () => {
         const module = modulesLesson.modules?.find(module => module.title === moduleTitle)
         const lessons = module?.lessons.map((lesson, index) => {
             return (
-                <div className="flex items-center gap-4 py-4 border-b-2 last-of-type:border-b-0 pl-10">
+                <div className="flex items-center gap-4 py-4 border-b-2 last-of-type:border-b-0 pl-4 md:pl-10">
                     <PlayCircleOutlineOutlined className="text-primary" />
                     <div className="flex flex-col">
                         <Text>{lesson.title}</Text>
-                        <Text className="text-gray-500">{verifyTextSize(lesson.description, 50)}</Text>
+                        {width > 768 && (
+                            <Text className="text-gray-500">{verifyTextSize(lesson.description, 50)}</Text>
+                        )}
                     </div>
                 </div>
             )
@@ -113,14 +116,14 @@ export const CoursePage = () => {
                 <Heading size="lg">{course.title}</Heading>
                 <div className="flex flex-col md:flex-row gap-6">
                     <div className="flex items-center gap-2">
-                        <CalendarTodayOutlined />
+                        <SchoolOutlined />
                         <div className="flex flex-col">
                             <Text>Instrutor</Text>
                             <Text>{course.instructor}</Text>
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
-                        <TimerOutlined />
+                        <CalendarTodayOutlined />
                         <div className="flex flex-col">
                             <Text>Atualizado em</Text>
                             <Text>{"20/04/2022"}</Text>
@@ -136,11 +139,13 @@ export const CoursePage = () => {
                 </div>
             </div>
             <div className="flex flex-col px-4 md:px-20 gap-12">
-                <Breadcrumbs>
-                    <Text size="lg"><Link to={"/journeys"}>Jornadas</Link></Text>
-                    <Text size="lg"><Link to={`/journey/${journey.pathID}`}>Jornada {journey.title}</Link></Text>
-                    <Text size="lg" className="text-font">{course.title}</Text>
-                </Breadcrumbs>
+                {width > 768 && (
+                    <Breadcrumbs>
+                        <Text size="lg"><Link to={"/journeys"}>Jornadas</Link></Text>
+                        <Text size="lg"><Link to={`/journey/${journey.pathID}`}>Jornada {journey.title}</Link></Text>
+                        <Text size="lg" className="text-font">{course.title}</Text>
+                    </Breadcrumbs>
+                )}
                 <LazyLoadImage className="max-h-56 w-fit" src={course.medias?.thumb} />
                 <div className="flex flex-col gap-2">
                     <Heading size="lg">O que você vai aprender:</Heading>

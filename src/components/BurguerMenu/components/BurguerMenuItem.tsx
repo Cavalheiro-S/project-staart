@@ -14,11 +14,11 @@ export const BurguerMenuItem = ( item : BurguerMenuItemProps) => {
     return (
         <div className="flex items-center gap-4 text-font">
             {item.icon}
-            <Heading asChild>
+            <Text asChild>
                 <Link to={item.link} onClick={item.onClick}>
                     {item.text}
                 </Link>
-            </Heading>
+            </Text>
         </div>
     )
 }

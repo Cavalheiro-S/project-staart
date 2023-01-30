@@ -6,6 +6,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { Heading } from "../Heading";
 import { BurguerMenuItem } from "./components/BurguerMenuItem";
 import Logo from "../../assets/images/Logo.svg"
+import { ToTop } from "../ToTop";
 interface BurguerMenuProps {
 
 }
@@ -15,6 +16,20 @@ export const BurguerMenu = ({ }: BurguerMenuProps) => {
     const { signOut, currentUser } = useAuth();
     const navigate = useNavigate();
 
+    const renderMenuItems = () => {
+        const menuItems = currentUser ? menuItemsLogged : menuItemsUnlogged
+        return menuItems.map((item, index) => <BurguerMenuItem
+            icon={item.icon}
+            text={item.text}
+            link={item.link}
+            key={index}
+            onClick={() => {
+                setOpen(!open)
+                if (item.link === '/signin') handleSignout()
+            }
+            } />)
+    }
+
     const handleSignout = async () => {
         await signOut();
         navigate('/signin')
@@ -22,17 +37,17 @@ export const BurguerMenu = ({ }: BurguerMenuProps) => {
 
     const menuItemsLogged = [
         {
-            icon: <ChromeReaderModeOutlined />,
+            icon: null,
             text: 'Jornadas',
             link: '/journeys'
         },
         {
-            icon: <ComputerOutlined />,
+            icon: null,
             text: 'Cursos',
             link: '/courses'
         },
         {
-            icon: <ExitToAppOutlined />,
+            icon: null,
             text: 'Sair',
             link: '/signin'
         }
@@ -51,31 +66,18 @@ export const BurguerMenu = ({ }: BurguerMenuProps) => {
         }
     ]
 
-    const renderMenuItems = () => {
-        const menuItems = currentUser ? menuItemsLogged : menuItemsUnlogged
-        return menuItems.map((item, index) => <BurguerMenuItem
-            icon={item.icon}
-            text={item.text}
-            link={item.link}
-            key={index}
-            onClick={() => {
-                setOpen(!open)
-                if (item.link === '/signin') handleSignout()
-            }
-            } />)
-    }
-
     return (
         <>
-            <nav className="flex items-center h-20 justify-between px-3">
+            <div id="header" className="flex sticky items-center h-20 justify-between px-4">
                 <img src={Logo} alt="Logo" />
                 <Menu className="text-font" onClick={() => setOpen(!open)} />
-            </nav>
-            {open &&
-                <nav className="flex flex-col justify-center h-full gap-6 p-4">
-                    {renderMenuItems()}
-                </nav>
-            }
+                {open &&
+                    <nav className=" absolute w-full p-4 translate-y-full bottom-0 z-10 left-0 flex flex-col justify-center gap-6 border shadow-md bg-white">
+                        {renderMenuItems()}
+                    </nav>
+                }
+            </div>
+            <ToTop/>
         </>
     )
 }

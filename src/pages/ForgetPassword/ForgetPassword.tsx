@@ -31,7 +31,7 @@ export const ForgetPassword = () => {
         setLoading(false);
     };
     return (
-        <div className="flex w-full h-[90vh] justify-center items-center">
+        <div className="flex w-full md:px-0 px-4 h-[90vh] justify-center items-center">
             <form onSubmit={handleSubmit(onSubmit)} className="w-96 flex flex-col gap-6">
                 <div>
                     <Heading size="lg">Recuperar senha</Heading>

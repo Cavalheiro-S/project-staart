@@ -44,7 +44,7 @@ export const Signup = () => {
         setShowPassword({ ...showPassword, [inputName]: !showPassword[inputName] })
     }
     return (
-        <div className="flex w-full h-[90vh] justify-center items-center">
+        <div className="flex md:px-0 px-4 w-full h-[90vh] justify-center items-center">
             <form onSubmit={handleSubmit(onSubmit)} className="w-96 flex flex-col gap-6">
                 <div>
                     <Heading size="lg">Criar Conta</Heading>
