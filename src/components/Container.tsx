@@ -8,7 +8,7 @@ export const Container = () => {
     return loading ? <Loading /> : (
         <>
             <Header />
-            <main className="h-full px-3 md:px-20 py-8 md:py-12">
+            <main className="h-full">
                 <Outlet />
             </main>
         </>

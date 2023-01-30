@@ -35,7 +35,7 @@ export const JourneyCard = ({ journey }: { journey: Journey }) => {
                 <Text>Jornada</Text>
                 <Heading size="sm" className={color}>{journey.title}</Heading>
             </div>
-            <Text className="text-gray-500">
+            <Text className="text-gray-500 hidden md:block">
                 {verifyTextSize(journey.description)}
             </Text>
             <div className="flex gap-4">

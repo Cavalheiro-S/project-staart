@@ -1,11 +1,11 @@
-import { ChromeReaderModeOutlined, ComputerOutlined, ExitToAppOutlined, ListOutlined } from "@mui/icons-material";
+import { ChromeReaderModeOutlined, ComputerOutlined, ExitToAppOutlined, ListOutlined, Menu } from "@mui/icons-material";
 import { Drawer } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { Heading } from "../Heading";
 import { BurguerMenuItem } from "./components/BurguerMenuItem";
-
+import Logo from "../../assets/images/Logo.svg"
 interface BurguerMenuProps {
 
 }
@@ -36,7 +36,7 @@ export const BurguerMenu = ({ }: BurguerMenuProps) => {
             text: 'Sair',
             link: '/signin'
         }
-    ]    
+    ]
 
     const menuItemsUnlogged = [
         {
@@ -68,15 +68,13 @@ export const BurguerMenu = ({ }: BurguerMenuProps) => {
     return (
         <>
             <nav className="flex items-center h-20 justify-between px-3">
-                <Heading className="text-primary">Staart Projetos</Heading>
-                <ListOutlined className="text-font" onClick={() => setOpen(!open)} />
+                <img src={Logo} alt="Logo" />
+                <Menu className="text-font" onClick={() => setOpen(!open)} />
             </nav>
             {open &&
-                <Drawer open={open} onClose={() => setOpen(!open)}>
-                    <nav className="flex flex-col justify-center h-full gap-6 p-4">
-                        {renderMenuItems()}
-                    </nav>
-                </Drawer>
+                <nav className="flex flex-col justify-center h-full gap-6 p-4">
+                    {renderMenuItems()}
+                </nav>
             }
         </>
     )

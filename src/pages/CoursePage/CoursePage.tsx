@@ -1,13 +1,16 @@
-import { AccessTimeOutlined, ArrowForwardIosOutlined, CalendarTodayOutlined, PlayCircleOutlineOutlined, SchoolOutlined } from "@mui/icons-material"
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material"
+import { AccessTimeOutlined, ArrowForwardIosOutlined, CalendarTodayOutlined, PlayCircleOutlineOutlined, SchoolOutlined, TimerOutlined } from "@mui/icons-material"
+import { Breadcrumbs } from "@mui/material"
+import * as Accordion from '@radix-ui/react-accordion';
+import clsx from "clsx";
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import { Link, useParams } from "react-router-dom"
 import { Heading } from "../../components/Heading"
+import { Loading } from "../../components/Loading";
 import { Text } from "../../components/Text"
-import { Course } from "../../interfaces"
+import { Course, Journey } from "../../interfaces"
 import { api } from "../../services/axios"
 import { toTimeString, verifyTextSize } from "../../utils"
-import { CourseBanner } from "../JourneyPage/components/CourseBanner"
 
 interface ModulesFilled {
     modules: {
@@ -23,55 +26,66 @@ interface ModulesFilled {
     }[]
 }
 
+
 export const CoursePage = () => {
 
     const [course, setCourse] = useState<Course>({} as Course);
+    const [loading, setLoading] = useState(true);
+    const [journey, setJourney] = useState<Journey>({} as Journey);
     const [modulesLesson, setModulesLesson] = useState<ModulesFilled>({} as ModulesFilled);
-    const [expanded, setExpanded] = useState<string | false>(false);
-    const { id } = useParams<{ id: string }>()
+    const [expanded, setExpanded] = useState<string[]>([]);
+    const { courseId, journeyId } = useParams<{
+        courseId: string,
+        journeyId: string
+    }>()
 
     useEffect(() => {
-        const loadCourse = async () => {
-            try {
-                const { data } = await api.get<Course>(`/courses/${id}`);
+        try {
+            setLoading(true);
+            const loadJourney = async () => {
+                const { data } = await api.get<Journey>(`/journeys/${journeyId}`);
+                setJourney(data);
+            }
+            const loadCourse = async () => {
+                const { data } = await api.get<Course>(`/courses/${courseId}`);
                 setCourse(data);
             }
-            catch (error) {
-                console.log(error);
-            }
-        }
-
-        const loadModulesLesson = async () => {
-            try {
-                const { data } = await api.get<ModulesFilled>(`/lessons/${id}`);
+            const loadModulesLesson = async () => {
+                const { data } = await api.get<ModulesFilled>(`/lessons/${courseId}`);
                 setModulesLesson(data);
             }
-            catch (error) {
-                console.log(error);
-            }
+            loadJourney();
+            loadCourse();
+            loadModulesLesson();
         }
-        loadCourse();
-        loadModulesLesson();
+        catch (error) {
+            console.log(error)
+        }
+        finally {
+            setLoading(false);
+        }
     }, [])
-
-    const handleChange =
-        (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-            setExpanded(isExpanded ? panel : false);
-        };
 
     const renderModuleList = () => {
         return course.modules?.map((module, index) => {
             return (
-                <Accordion
-                    expanded={expanded === module.title}
-                    onChange={handleChange(module.title)}
-                    className="py-3" key={index}>
-                    <AccordionSummary>
-                        {expanded === module.title ? <ArrowForwardIosOutlined className="rotate-90" /> : <ArrowForwardIosOutlined />}
-                        <Heading className="ml-2" size="sm">{module.title}</Heading>
-                    </AccordionSummary>
-                    {renderModuleContent(module.title)}
-                </Accordion>
+                <Accordion.Root
+                    type="multiple"
+                    value={expanded}
+                    onValueChange={setExpanded}
+                    className="py-3 border-b-2" key={index}>
+                    <Accordion.Item value={module.title}>
+                        <Accordion.Trigger className="flex py-6 w-full h-full">
+                            <ArrowForwardIosOutlined className={clsx("transition", {
+                                "rotate-90": expanded.includes(module.title)
+                            })}/>
+                            <Heading className="ml-2" size="sm">{module.title}</Heading>
+                        </Accordion.Trigger>
+                        <Accordion.Content>
+                            {renderModuleContent(module.title)}
+                        </Accordion.Content>
+                    </Accordion.Item>
+                </Accordion.Root>
             )
         })
     }
@@ -80,42 +94,64 @@ export const CoursePage = () => {
         const module = modulesLesson.modules?.find(module => module.title === moduleTitle)
         const lessons = module?.lessons.map((lesson, index) => {
             return (
-                <Accordion key={index}>
-                    <AccordionDetails className="flex flex-col md:flex-row ml-12 gap-4 md:items-center">
-                        <PlayCircleOutlineOutlined className="text-primary" />
-                        <div className="flex flex-col">
-                            <Text>{lesson.title}</Text>
-                            <Text className="text-gray-500">{verifyTextSize(lesson.description, 50)}</Text>
-                        </div>
-                    </AccordionDetails>
-                </Accordion>
+                <div className="flex items-center gap-4 py-4 border-b-2 last-of-type:border-b-0 pl-10">
+                    <PlayCircleOutlineOutlined className="text-primary" />
+                    <div className="flex flex-col">
+                        <Text>{lesson.title}</Text>
+                        <Text className="text-gray-500">{verifyTextSize(lesson.description, 50)}</Text>
+                    </div>
+                </div>
             )
         })
         return lessons;
     }
 
-    return (
-        <div className="flex flex-col gap-6 text-font">
-            <CourseBanner course={course} />
-            <Heading>Conteúdo do curso:</Heading>
-            <div className="flex gap-6">
-                <div className="flex gap-2 items-center">
-                    <SchoolOutlined />
-                    <div className="flex flex-col">
-                        <Text className="font-semibold">Instrutor</Text>
-                        <Text>{course.instructor}</Text>
+    return loading ? <Loading /> : (
+        <div className="flex flex-col gap-12 text-font">
+            <div className="flex flex-col px-4 md:px-20 py-12 bg-font text-white gap-4">
+                <Text>Curso</Text>
+                <Heading size="lg">{course.title}</Heading>
+                <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex items-center gap-2">
+                        <CalendarTodayOutlined />
+                        <div className="flex flex-col">
+                            <Text>Instrutor</Text>
+                            <Text>{course.instructor}</Text>
+                        </div>
                     </div>
-                </div>
-                <div className="flex gap-2 items-center">
-                    <AccessTimeOutlined />
-                    <div className="flex flex-col">
-                        <Text className="font-semibold">Duração</Text>
-                        <Text>{toTimeString(course.duration)}</Text>
+                    <div className="flex items-center gap-2">
+                        <TimerOutlined />
+                        <div className="flex flex-col">
+                            <Text>Atualizado em</Text>
+                            <Text>{"20/04/2022"}</Text>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <TimerOutlined />
+                        <div className="flex flex-col">
+                            <Text>Duração</Text>
+                            <Text>{toTimeString(course.duration)}</Text>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div>
-                {renderModuleList()}
+            <div className="flex flex-col px-4 md:px-20 gap-12">
+                <Breadcrumbs>
+                    <Text size="lg"><Link to={"/journeys"}>Jornadas</Link></Text>
+                    <Text size="lg"><Link to={`/journey/${journey.pathID}`}>Jornada {journey.title}</Link></Text>
+                    <Text size="lg" className="text-font">{course.title}</Text>
+                </Breadcrumbs>
+                <LazyLoadImage className="max-h-56 w-fit" src={course.medias?.thumb} />
+                <div className="flex flex-col gap-2">
+                    <Heading size="lg">O que você vai aprender:</Heading>
+                    <Text asChild>
+                        <p className="md:w-1/2 text-gray-500">{course.description}</p>
+                    </Text>
+                </div>
+                <Heading>Conteúdo do curso:</Heading>
+                <div className="md:w-1/2">
+                    {renderModuleList()}
+                </div>
             </div>
         </div>
     )

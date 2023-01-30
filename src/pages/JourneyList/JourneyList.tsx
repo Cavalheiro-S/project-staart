@@ -15,20 +15,19 @@ export const JourneyList = () => {
     const [filterValue, setFilterValue] = useState('standard');
 
     useEffect(() => {
-        const loadJourneys = async () => {
-            try {
+        try {
+            const loadJourneys = async () => {
                 const { data } = await api.get<Journey[]>(`/journeys`);
                 setJourneys(data);
             }
-            catch (error) {
-                console.log(error)
-            }
-            finally {
-                setLoading(false)
-            }
-
+            loadJourneys()
         }
-        loadJourneys()
+        catch (error) {
+            console.log(error)
+        }
+        finally {
+            setLoading(false)
+        }
     }, [])
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -60,7 +59,7 @@ export const JourneyList = () => {
         return journeysFiltered.map((journey, index) => <JourneyCard key={index} journey={journey} />)
     }
     return loading ? <Loading /> : (
-        <div className="flex flex-col w-full h-[90vh] text-font gap-6">
+        <div className="flex flex-col w-full px-4 md:px-20 py-12 h-[90vh] text-font gap-6">
             <div className="flex flex-col">
                 <div className="flex flex-col md:flex-row md:gap-4 md:items-center mt-0">
                     <div className="p-3 bg-primaryHover w-fit rounded-full">
@@ -71,7 +70,7 @@ export const JourneyList = () => {
                 <Text className="text-gray-500">Selecione uma jornada para começar</Text>
             </div>
             <SelectFilter filterValue={filterValue} handleChange={handleChange} />
-            <div className="flex md:gap-20 flex-wrap">{renderJourneys()}</div>
+            <div className="flex gap-12 md:gap-20 flex-wrap">{renderJourneys()}</div>
         </div>)
 
 }

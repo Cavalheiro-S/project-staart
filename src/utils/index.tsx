@@ -23,9 +23,7 @@ export const verifyTextSize = (text: string, sizeLimit = 100) => {
 }
 
 export const toTimeString = (totalMiliseconds: number) => {
-    const time = moment.duration(totalMiliseconds)
-
-
+    const time = moment.duration(totalMiliseconds);
     const timeSegments = {
         hours: time.hours() == 0 ? '' : time.hours() + 'h',
         minutes: time.minutes() == 0 ? '' : time.minutes() + 'm',

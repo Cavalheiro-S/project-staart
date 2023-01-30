@@ -34,7 +34,7 @@ export const AppRoutes = () => {
                             <JourneyPage />
                         </PrivateRoute>
                     } />
-                    <Route path="/course/:id" element={
+                    <Route path="/journey/:journeyId/course/:courseId" element={
                         <PrivateRoute>
                             <CoursePage />
                         </PrivateRoute>

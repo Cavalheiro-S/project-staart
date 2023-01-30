@@ -1,16 +1,14 @@
-import { ArrowForwardIosOutlined, ComputerOutlined, LockClockOutlined, TimerOutlined } from "@mui/icons-material"
+import { ComputerOutlined, TimerOutlined } from "@mui/icons-material"
+import { Breadcrumbs } from "@mui/material"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { Heading } from "../../components/Heading"
 import { Loading } from "../../components/Loading"
 import { Text } from "../../components/Text"
 import { Course, Journey } from "../../interfaces"
 import { api } from "../../services/axios"
-import { returnColorByJourneyTitle } from "../../utils"
-import { CourseCard } from "./components/CurseCard"
-import { CourseBanner } from "./components/CourseBanner"
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material"
-import { AccordionStyled } from "../../components/Accordion"
+import { CourseCard } from "./components/CourseCard"
+import { JourneyBanner } from "./components/JourneyBanner"
 
 
 export const JourneyPage = () => {
@@ -18,96 +16,67 @@ export const JourneyPage = () => {
     const { id } = useParams<{ id: string }>();
     const [journey, setJourney] = useState<Journey>();
     const [courses, setCourses] = useState<Course[]>();
-    const [courseSelected, setCourseSelected] = useState<Course>({} as Course);
-    const [expanded, setExpanded] = useState<string | false>(false);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const loadJourney = async () => {
-            try {
+        try {
+            setLoading(true);
+            const loadJourney = async () => {
                 setLoading(true);
                 const { data } = await api.get<Journey>(`/journeys/${id}`);
                 setJourney(data);
             }
-            catch (error) {
-                console.log(error);
-            }
-            finally {
-                setLoading(false);
-            }
-        }
-        const loadCourses = async () => {
-            try {
+            const loadCourses = async () => {
                 setLoading(true);
                 const { data } = await api.get<Course[]>(`/journeys/${id}/courses`);
                 setCourses(data);
-                data.length > 0 && setCourseSelected(data[0]);
             }
-            catch (error) {
-                console.log(error);
-            }
-            finally {
-                setLoading(false);
-            }
+            loadJourney();
+            loadCourses();
         }
-        loadJourney();
-        loadCourses();
+        catch(err) {
+            console.log(err);
+        }
+        finally{
+            setLoading(false);
+        }
     }, [])
-
-
-    const courseSelectedHandler = (course: Course) => {
-        setCourseSelected(course);
-    }
-
 
     const renderCourseList = () => {
         return (
-            <div className=" flex flex-col flex-1  max-h-96 overflow-y-scroll col-start-1">
-                {courses?.map((course, index) => (
-                    <CourseCard
-                        onClick={() => courseSelectedHandler(course)}
-                        className={courseSelected?.id === course.id ? "bg-primaryHover" : ""}
-                        key={index}
-                        course={course} />
+            <>
+                <Heading className="text-font">Cursos da Jornada</Heading>
+                <div className="flex flex-col gap-6 w-fit">
+                    {courses?.map((course, index) => (
+                        <CourseCard
+                            onClick={() => navigate(`course/${course.id}`)}
+                            key={index}
+                            course={course} />
 
-                ))}
-            </div>
+                    ))}
+                </div>
+            </>
         )
     }
 
     return loading ? <Loading /> : (
-        <div className="flex flex-col gap-4 md:grid md:grid-cols-2 grid-rows-2">
-            <div className="flex flex-col col-span-1 row-start-1 gap-4">
-                <div>
-                    {journey?.medias.thumb && <img src={journey?.medias.thumb} className="w-12 md:block" alt="thumb" />}
-                    <Heading className={returnColorByJourneyTitle(journey?.title ?? "")}>{journey?.title}</Heading>
+        <div>
+            <JourneyBanner journey={journey ?? {} as Journey} />
+            <div className="flex flex-col gap-12 px-4 md:px-20 py-20">
+                <Breadcrumbs>
+                    <Text size="lg" asChild>
+                        <Link to="/journeys">Jornadas</Link>
+                    </Text>
+                    <Text size="lg" className="text-font">Jornada {journey?.title}</Text>
+                </Breadcrumbs>
+                <div className="md:w-1/2">
+                    <Heading className="text-font mb-2">O que você vai aprender ?</Heading>
+                    <Text className="text-gray-500">{journey?.description}</Text>
                 </div>
-                <div>
-                    <Heading size="sm" className="text-font">O que você vai aprender ?</Heading>
-                    <Text className="text-gray-500 max-w-md">{journey?.description}</Text>
-                </div>
-                <div className="flex gap-4">
-                    <div className="flex gap-4 items-center text-font">
-                        <ComputerOutlined />
-                        <div className="flex flex-col">
-                            <Text>Total de cursos</Text>
-                            <Heading size="sm" className="text-font">{journey?.coursesID.length}</Heading>
-                        </div>
-                    </div>
-                    <div className="flex gap-4 items-center text-font">
-                        <TimerOutlined />
-                        <div className="flex flex-col">
-                            <Text>Tempo estimado</Text>
-                            <Heading size="sm" className="text-font">13h 20min</Heading>
-                        </div>
-                    </div>
-                </div>
+                {renderCourseList()}
             </div>
-            <div className=" col-start-1 md:col-start-2 md:row-start-1">
-                <CourseBanner course={courseSelected} />
-            </div>
-            {renderCourseList()}
-        </div>
+        </div >
     )
 
 }
