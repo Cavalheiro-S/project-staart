@@ -5,7 +5,6 @@ import { BurguerMenu } from "../BurguerMenu/BurguerMenu"
 import { Text } from "../Text"
 import { MenuItemsLogged } from "./components/MenuItemsLogged"
 import Logo from "../../assets/images/Logo.svg"
-
 export const Header = () => {
     const { currentUser } = useAuth();
     const { width } = useWindowDimensions();

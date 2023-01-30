@@ -32,6 +32,12 @@ export interface Course {
     id: string;
     extras: string[];
     modules: Module[];
+    courseCreatedAt: {
+        $date: string;
+    }
+    courseUpdatedAt: {
+        $date: string;
+    }
 }
 
 export interface Module {

@@ -7,9 +7,10 @@ import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 
 interface JourneyBannerProps {
     journey: Journey
+    duration?: string
 }
 
-export const JourneyBanner = ({ journey }: JourneyBannerProps) => {
+export const JourneyBanner = ({ journey, duration}: JourneyBannerProps) => {
     const { width } = useWindowDimensions();
 
     const renderBanner = () => {
@@ -51,7 +52,7 @@ export const JourneyBanner = ({ journey }: JourneyBannerProps) => {
                         <TimerOutlined />
                         <div>
                             <Text>Tempo estimado</Text>
-                            <Heading size="sm">13h 20min</Heading>
+                            <Heading size="sm">{duration ?? 0}</Heading>
                         </div>
                     </div>
                 </div>

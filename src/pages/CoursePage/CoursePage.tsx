@@ -2,6 +2,7 @@ import { ArrowForwardIosOutlined, CalendarTodayOutlined, PlayCircleOutlineOutlin
 import { Breadcrumbs } from "@mui/material";
 import * as Accordion from '@radix-ui/react-accordion';
 import clsx from "clsx";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link, useParams } from "react-router-dom";
@@ -41,31 +42,29 @@ export const CoursePage = () => {
     }>()
     const { width } = useWindowDimensions();
     useEffect(() => {
-        try {
+        const loadData = async () => {
             setLoading(true);
-            const loadJourney = async () => {
-                const { data } = await api.get<Journey>(`/journeys/${journeyId}`);
-                setJourney(data);
-            }
-            const loadCourse = async () => {
-                const { data } = await api.get<Course>(`/courses/${courseId}`);
-                setCourse(data);
-            }
-            const loadModulesLesson = async () => {
-                const { data } = await api.get<ModulesFilled>(`/lessons/${courseId}`);
-                setModulesLesson(data);
-            }
-            loadJourney();
-            loadCourse();
-            loadModulesLesson();
-        }
-        catch (error) {
-            console.log(error)
-        }
-        finally {
-            setLoading(false);
-        }
-    }, [])
+            try {
+                const [journeyResponse, courseResponse, modulesLessonResponse] = await Promise.all([
+                    api.get<Journey>(`/journeys/${journeyId}`), 
+                    api.get<Course>(`/courses/${courseId}`), 
+                    api.get<ModulesFilled>(`/lessons/${courseId}`)
+                ]);
+    
+                setJourney(journeyResponse.data);
+                setCourse(courseResponse.data);
+                setModulesLesson(modulesLessonResponse.data);
+    
+            } catch (error) {
+                console.log(error)
+            } finally {
+                setLoading(false);   
+            } 
+    
+        };
+    
+        loadData();    
+    }, []) 
 
     const renderModuleList = () => {
         return course.modules?.map((module, index) => {
@@ -126,7 +125,7 @@ export const CoursePage = () => {
                         <CalendarTodayOutlined />
                         <div className="flex flex-col">
                             <Text>Atualizado em</Text>
-                            <Text>{"20/04/2022"}</Text>
+                            <Text>{moment(course.courseUpdatedAt.$date).format("DD/MM/YYYY")}</Text>
                         </div>
                     </div>
                     <div className="flex items-center gap-2">

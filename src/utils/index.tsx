@@ -1,5 +1,4 @@
 import moment from "moment"
-import { Course, Journey, JourneySlug } from "../interfaces"
 
 export const returnColorByJourneyTitle = (journeyTitle: string) => {
     switch (journeyTitle) {
