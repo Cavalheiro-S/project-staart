@@ -37,9 +37,9 @@ export const SelectFilter = ({ filterValue, handleChange, className, options }: 
                 onChange={handleChange}>
                 {renderOptions() ?? (
                     [
-                        <MenuItem value="standard">Padrão</MenuItem>,
-                        <MenuItem value="alphabetic">Alfabética</MenuItem>,
-                        <MenuItem value="courseTotal">Total de Cursos</MenuItem>
+                        <MenuItem key={0} value="standard">Padrão</MenuItem>,
+                        <MenuItem key={1} value="alphabetic">Alfabética</MenuItem>,
+                        <MenuItem key={2} value="courseTotal">Total de Cursos</MenuItem>
                     ]
                 )}
 

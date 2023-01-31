@@ -59,7 +59,7 @@ export const JourneyList = () => {
         return journeysFiltered.map((journey, index) => <JourneyCard key={index} journey={journey} />)
     }
     return loading ? <Loading /> : (
-        <div className="flex flex-col w-full px-4 md:px-20 py-12 h-[90vh] text-font gap-6">
+        <div className="flex flex-col w-full px-4 md:px-20 py-12 md:h-[90vh] text-font gap-6">
             <div className="flex flex-col">
                 <Heading className="text-font">Jornadas de aprendizado</Heading>
                 <Text className="text-gray-500">Selecione uma jornada para começar</Text>

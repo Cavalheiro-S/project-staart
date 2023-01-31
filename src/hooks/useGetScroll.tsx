@@ -7,8 +7,6 @@ export const useGetScroll = () => {
     const handleScroll = () => {
         setScrollX(window.scrollX)
         setScrollY(window.scrollY)
-        console.log(window.scrollY);
-        
     }
 
     useEffect(() => {

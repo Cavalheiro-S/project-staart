@@ -2,9 +2,9 @@ import { Link } from "react-router-dom"
 import { useAuth } from "../../hooks/useAuth"
 import { useWindowDimensions } from "../../hooks/useWindowDimensions"
 import { BurguerMenu } from "../BurguerMenu/BurguerMenu"
+import { Logo } from "../Logo"
 import { Text } from "../Text"
 import { MenuItemsLogged } from "./components/MenuItemsLogged"
-import Logo from "../../assets/images/Logo.svg"
 export const Header = () => {
     const { currentUser } = useAuth();
     const { width } = useWindowDimensions();
@@ -14,7 +14,7 @@ export const Header = () => {
             return <BurguerMenu />
 
         return (
-            <header className="relative shadow-sm px-3 md:px-20 h-[10vh] ">
+            <header className="bg-white w-screen z-50 fixed shadow-sm px-3 md:px-20 h-[10vh]">
                 {renderMenu()}
             </header >
         )
@@ -26,7 +26,7 @@ export const Header = () => {
         return (
             <>
                 <div className="grid grid-cols-3 grid-rows-1 items-center h-full">
-                    <img src={Logo} alt="logo" />
+                    <Logo/>
                     <div className="flex items-center gap-4 justify-center">
                         <Text asChild>
                             <Link to="/signin">

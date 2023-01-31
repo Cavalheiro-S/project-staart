@@ -1,8 +1,8 @@
-import { ChromeReaderModeOutlined, ComputerOutlined, ExitToAppOutlined } from "@mui/icons-material"
+import { ExitToAppOutlined } from "@mui/icons-material"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../../../hooks/useAuth"
+import { Logo } from "../../Logo"
 import { Text } from "../../Text"
-import Logo from "../../../assets/images/Logo.svg"
 
 export const MenuItemsLogged = () => {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ export const MenuItemsLogged = () => {
     return (
         <nav className="grid h-full grid-cols-2 md:grid-cols-3 grid-rows-1">
             <div className="flex items-center gap-4">
-                <img src={Logo} alt="Logo" />
+                <Logo/>
             </div>
             <div className="md:flex items-center justify-center gap-4 text-font">
                 <Text className="hover:text-primary" asChild>

@@ -123,13 +123,13 @@ export const CoursesPage = () => {
         setFilterValue(filter);
     };
     return (
-        <div className="flex flex-col mt-12 px-4 md:px-20 gap-12">
+        <div className="flex flex-col mt-12 px-4 md:px-20 gap-6">
             <div>
                 <Heading className="text-font">Cursos</Heading>
                 <Text className="text-gray-500">Todas os cursos da plataforma</Text>
             </div>
             <SelectFilter options={filterOptions} filterValue={filterValue} handleChange={handleChange} />
-            <div className="flex flex-wrap gap-12 h-full">
+            <div className="flex flex-wrap gap-6 h-full">
                 {renderCourses()}
             </div>
 

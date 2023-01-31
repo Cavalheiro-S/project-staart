@@ -63,7 +63,7 @@ export const BurguerMenu = () => {
 
     return (
         <>
-            <div id="header" className="flex sticky items-center h-20 justify-between px-4">
+            <div id="header" className="flex sticky items-center h-20 justify-between px-4 z-50">
                 <img src={Logo} alt="Logo" />
                 <Menu className="text-font" onClick={() => setOpen(!open)} />
                 {open &&
@@ -72,7 +72,6 @@ export const BurguerMenu = () => {
                     </nav>
                 }
             </div>
-            <ToTop/>
         </>
     )
 }

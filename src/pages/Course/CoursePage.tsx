@@ -42,6 +42,7 @@ export const CoursePage = () => {
         journeyId: string
     }>()
     const { width } = useWindowDimensions();
+
     useEffect(() => {
         const loadData = async () => {
             setLoading(true);
@@ -55,26 +56,25 @@ export const CoursePage = () => {
                 setJourney(journeyResponse.data);
                 setCourse(courseResponse.data);
                 setModulesLesson(modulesLessonResponse.data);
-    
             } catch (error) {
                 console.log(error)
             } finally {
                 setLoading(false);   
             } 
-    
         };
     
         loadData();    
     }, []) 
 
     const renderModuleList = () => {
+        
         return course.modules?.map((module, index) => {
             return (
                 <Accordion.Root
                     type="multiple"
                     value={expanded}
                     onValueChange={setExpanded}
-                    className="py-3 border-b-2" key={index}>
+                    className="py-3 border-b-2 last-of-type:border-b-0" key={index}>
                     <Accordion.Item value={module.title}>
                         <Accordion.Trigger className="flex py-6 w-full h-full">
                             <ArrowForwardIosOutlined className={clsx("transition", {

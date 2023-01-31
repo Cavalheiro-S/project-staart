@@ -59,7 +59,7 @@ export const JourneyPage = () => {
                             key={index}
                             course={course}>
                                 <Card.Hover course={course}/>
-                                <Card.Description course={course}/>
+                                <Card.Description className="px-2" course={course}/>
                             </Card.Container>
 
                     ))}
