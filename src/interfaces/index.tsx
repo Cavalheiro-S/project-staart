@@ -20,11 +20,13 @@ export enum JourneySlug {
 }
 
 export interface Course {
+    journeyId?: string;
     medias:{
         thumb: string;
     }
     title: string;
     description: string;
+    status: "published" | "pending";
     instructor: string;
     tags: string[];
     duration: number;

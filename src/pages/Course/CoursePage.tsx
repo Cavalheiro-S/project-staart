@@ -36,7 +36,8 @@ export const CoursePage = () => {
     const [journey, setJourney] = useState<Journey>({} as Journey);
     const [modulesLesson, setModulesLesson] = useState<ModulesFilled>({} as ModulesFilled);
     const [expanded, setExpanded] = useState<string[]>([]);
-    const { courseId, journeyId } = useParams<{
+    const { courseId, journeyId, from } = useParams<{
+        from?: string,
         courseId: string,
         journeyId: string
     }>()
@@ -94,7 +95,7 @@ export const CoursePage = () => {
         const module = modulesLesson.modules?.find(module => module.title === moduleTitle)
         const lessons = module?.lessons.map((lesson, index) => {
             return (
-                <div className="flex items-center gap-4 py-4 border-b-2 last-of-type:border-b-0 pl-4 md:pl-10">
+                <div key={index} className="flex items-center gap-4 py-4 border-b-2 last-of-type:border-b-0 pl-4 md:pl-10">
                     <PlayCircleOutlineOutlined className="text-primary" />
                     <div className="flex flex-col">
                         <Text>{lesson.title}</Text>
@@ -106,6 +107,26 @@ export const CoursePage = () => {
             )
         })
         return lessons;
+    }
+
+    const renderBreadCrumb = () => {
+        if(from === "journey") {
+            return (
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Text size="lg" asChild><Link to="/journeys">Jornadas</Link></Text>
+                    <Text size="lg" asChild><Link to={`/journey/${journeyId}`}>{journey.title}</Link></Text>
+                    <Text size="lg" className="text-font">{course.title}</Text>
+                </Breadcrumbs>
+            )
+        }
+        if(from === "course") {
+            return (
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Text size="lg" asChild><Link to="/courses">Cursos</Link></Text>
+                    <Text size="lg" className="text-font">{course.title}</Text>
+                </Breadcrumbs>
+            )
+        }
     }
 
     return loading ? <Loading /> : (
@@ -138,13 +159,7 @@ export const CoursePage = () => {
                 </div>
             </div>
             <div className="flex flex-col px-4 md:px-20 gap-12">
-                {width > 768 && (
-                    <Breadcrumbs>
-                        <Text size="lg"><Link to={"/journeys"}>Jornadas</Link></Text>
-                        <Text size="lg"><Link to={`/journey/${journey.pathID}`}>Jornada {journey.title}</Link></Text>
-                        <Text size="lg" className="text-font">{course.title}</Text>
-                    </Breadcrumbs>
-                )}
+                {width > 768 && renderBreadCrumb()}
                 <LazyLoadImage className="max-h-56 w-fit" src={course.medias?.thumb} />
                 <div className="flex flex-col gap-2">
                     <Heading size="lg">O que você vai aprender:</Heading>

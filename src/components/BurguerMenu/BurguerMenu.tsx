@@ -1,17 +1,12 @@
-import { ChromeReaderModeOutlined, ComputerOutlined, ExitToAppOutlined, ListOutlined, Menu } from "@mui/icons-material";
-import { Drawer } from "@mui/material";
+import { Menu } from "@mui/icons-material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../assets/images/Logo.svg";
 import { useAuth } from "../../hooks/useAuth";
-import { Heading } from "../Heading";
-import { BurguerMenuItem } from "./components/BurguerMenuItem";
-import Logo from "../../assets/images/Logo.svg"
 import { ToTop } from "../ToTop";
-interface BurguerMenuProps {
+import { BurguerMenuItem } from "./components/BurguerMenuItem";
 
-}
-
-export const BurguerMenu = ({ }: BurguerMenuProps) => {
+export const BurguerMenu = () => {
     const [open, setOpen] = useState(false);
     const { signOut, currentUser } = useAuth();
     const navigate = useNavigate();

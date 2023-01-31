@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { Heading } from "../../Heading"
 import { Text } from "../../Text"
 
 export interface BurguerMenuItemProps {
@@ -8,7 +7,6 @@ export interface BurguerMenuItemProps {
     link: string,
     onClick?: () => void
 }
-
 
 export const BurguerMenuItem = ( item : BurguerMenuItemProps) => {
     return (

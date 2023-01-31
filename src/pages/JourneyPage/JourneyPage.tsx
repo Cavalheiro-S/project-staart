@@ -9,7 +9,7 @@ import { useWindowDimensions } from "../../hooks/useWindowDimensions"
 import { Course, Journey } from "../../interfaces"
 import { api } from "../../services/axios"
 import { toTimeString } from "../../utils"
-import { CourseCard } from "./components/CourseCard"
+import { Card } from "../../components/CourseCard"
 import { JourneyBanner } from "./components/JourneyBanner"
 
 
@@ -53,10 +53,14 @@ export const JourneyPage = () => {
                 <Heading className="text-font">Cursos da Jornada</Heading>
                 <div className="flex flex-col gap-6 w-fit">
                     {coursesWithLessons?.map((course, index) => (
-                        <CourseCard
-                            onClick={() => navigate(`course/${course.id}`)}
+                        <Card.Container
+                            className="md:flex-row flex-col md:h-32"
+                            onClick={() => navigate(`course/${course.id}/journey`)}
                             key={index}
-                            course={course} />
+                            course={course}>
+                                <Card.Hover course={course}/>
+                                <Card.Description course={course}/>
+                            </Card.Container>
 
                     ))}
                 </div>

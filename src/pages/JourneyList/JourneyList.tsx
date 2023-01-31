@@ -7,7 +7,7 @@ import { Text } from "../../components/Text"
 import { Journey } from "../../interfaces"
 import { api } from "../../services/axios"
 import { JourneyCard } from "./components/JourneyCard"
-import { SelectFilter } from "./components/SelectFilter"
+import { SelectFilter } from "../../components/SelectFilter"
 
 export const JourneyList = () => {
     const [journeys, setJourneys] = useState<Journey[]>([]);
@@ -61,12 +61,7 @@ export const JourneyList = () => {
     return loading ? <Loading /> : (
         <div className="flex flex-col w-full px-4 md:px-20 py-12 h-[90vh] text-font gap-6">
             <div className="flex flex-col">
-                <div className="flex flex-col md:flex-row md:gap-4 md:items-center mt-0">
-                    <div className="p-3 bg-primaryHover w-fit rounded-full">
-                        <ChromeReaderModeOutlined className="text-primary" />
-                    </div>
-                    <Heading className="text-font">Jornadas de aprendizado</Heading>
-                </div>
+                <Heading className="text-font">Jornadas de aprendizado</Heading>
                 <Text className="text-gray-500">Selecione uma jornada para começar</Text>
             </div>
             <SelectFilter filterValue={filterValue} handleChange={handleChange} />

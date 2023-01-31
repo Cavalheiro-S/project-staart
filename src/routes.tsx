@@ -3,7 +3,8 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Container } from "./components/Container";
 import { PrivateRoute } from "./components/PrivateRouter";
 import { useAuth } from "./hooks/useAuth";
-import { CoursePage } from "./pages/CoursePage/CoursePage";
+import { CoursePage } from "./pages/Course/CoursePage";
+import { CoursesPage } from "./pages/Courses/Courses";
 import { ForgetPassword } from "./pages/ForgetPassword/ForgetPassword";
 import { JourneyList } from "./pages/JourneyList/JourneyList";
 import { JourneyPage } from "./pages/JourneyPage/JourneyPage";
@@ -34,7 +35,7 @@ export const AppRoutes = () => {
                             <JourneyPage />
                         </PrivateRoute>
                     } />
-                    <Route path="/journey/:journeyId/course/:courseId" element={
+                    <Route path="/journey/:journeyId/course/:courseId/:from" element={
                         <PrivateRoute>
                             <CoursePage />
                         </PrivateRoute>
@@ -42,6 +43,11 @@ export const AppRoutes = () => {
                     <Route path="/journeys" element={
                         <PrivateRoute>
                             <JourneyList />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/courses" element={
+                        <PrivateRoute>
+                            <CoursesPage />
                         </PrivateRoute>
                     } />
                     <Route path="*" element={<Navigate to="/journeys" />} />
