@@ -1,10 +1,8 @@
-import { PlayArrowOutlined, PlayCircleOutlineOutlined } from "@mui/icons-material";
+import { PlayCircleOutlineOutlined } from "@mui/icons-material";
 import clsx from "clsx";
-import { useState } from "react";
-import { Text } from "./Text";
 import { Course } from "../interfaces";
 import { toTimeString, verifyTextSize } from "../utils";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Text } from "./Text";
 
 interface CourseCardContainerProps {
     course: Course
@@ -28,7 +26,7 @@ const CardHover = ({course, className}: CourseCardHoverProps) => {
 
     return (
         <div className={clsx("h-full relative rounded transition", className)}>
-            <LazyLoadImage className="h-full rounded group-hover:opacity-40 transition" src={course.medias.thumb} alt={course.title} />
+            <img className="h-full rounded group-hover:opacity-40 transition" src={course.medias.thumb} alt={course.title} />
             <PlayCircleOutlineOutlined sx={{display:"none"}} className="absolute text-primary left-0 right-0 mx-auto top-0 bottom-0 my-auto group-hover:block" />
             <div className={clsx("absolute bottom-0 w-full p-2 bg-opacity-30 bg-black group-hover:bg-transparent")}>
                 <Text size="sm" className="text-white">{course.instructor}</Text>

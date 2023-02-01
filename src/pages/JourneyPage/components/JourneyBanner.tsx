@@ -1,9 +1,8 @@
-import { ComputerOutlined, TimerOutlined } from "@mui/icons-material"
-import { Heading } from "../../../components/Heading"
-import { Text } from "../../../components/Text"
-import { Journey } from "../../../interfaces"
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { ComputerOutlined, TimerOutlined } from "@mui/icons-material";
+import { Heading } from "../../../components/Heading";
+import { Text } from "../../../components/Text";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
+import { Journey } from "../../../interfaces";
 
 interface JourneyBannerProps {
     journey: Journey
@@ -18,7 +17,7 @@ export const JourneyBanner = ({ journey, duration}: JourneyBannerProps) => {
         if (journey.medias.banner && width > 768) {
             return (
                 <div className="relative">
-                    <LazyLoadImage src={journey.medias.banner} className="w-screen" alt="banner" />
+                    <img src={journey.medias.banner} className="w-screen" alt="banner" />
                     <div className="absolute flex items-center w-full bottom-0 h-52 px-20 bg-font bg-opacity-70">
                         {renderBannerInfo()}
                     </div>

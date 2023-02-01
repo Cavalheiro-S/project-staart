@@ -4,7 +4,6 @@ import * as Accordion from '@radix-ui/react-accordion';
 import clsx from "clsx";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link, useParams } from "react-router-dom";
 import { Heading } from "../../components/Heading";
 import { Loading } from "../../components/Loading";
@@ -160,7 +159,7 @@ export const CoursePage = () => {
             </div>
             <div className="flex flex-col px-4 md:px-20 gap-12">
                 {width > 768 && renderBreadCrumb()}
-                <LazyLoadImage className="max-h-56 w-fit" src={course.medias?.thumb} />
+                <img className="max-h-56 w-fit" src={course.medias?.thumb} />
                 <div className="flex flex-col gap-2">
                     <Heading size="lg">O que você vai aprender:</Heading>
                     <Text asChild>
