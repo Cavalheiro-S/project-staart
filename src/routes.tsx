@@ -8,6 +8,7 @@ import { CoursesPage } from "./pages/Courses/Courses";
 import { ForgetPassword } from "./pages/ForgetPassword/ForgetPassword";
 import { JourneyList } from "./pages/JourneyList/JourneyList";
 import { JourneyPage } from "./pages/JourneyPage/JourneyPage";
+import { LessonPage } from "./pages/Lesson/LessonPage";
 import { Signin } from "./pages/Signin/Signin";
 import { Signup } from "./pages/Signup/Signup";
 
@@ -48,6 +49,11 @@ export const AppRoutes = () => {
                     <Route path="/courses" element={
                         <PrivateRoute>
                             <CoursesPage />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/lesson/:journeyId/:courseId/:lessonTitle" element={
+                        <PrivateRoute>
+                            <LessonPage />
                         </PrivateRoute>
                     } />
                     <Route path="*" element={<Navigate to="/journeys" />} />

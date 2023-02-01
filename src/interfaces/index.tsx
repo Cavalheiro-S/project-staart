@@ -48,3 +48,17 @@ export interface Module {
     title: string;
     description: string;
 }
+
+export interface ModulesFilled {
+    modules: {
+        title: string,
+        lessons: {
+            id: string,
+            title: string,
+            duration: number,
+            description: string,
+            extras: {},
+            status: string
+        }[]
+    }[]
+}
