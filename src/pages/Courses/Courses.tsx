@@ -1,6 +1,6 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Card } from "../../components/CourseCard";
 import { Heading } from "../../components/Heading";
 import { Loading } from "../../components/Loading";
@@ -8,8 +8,6 @@ import { SelectFilter } from "../../components/SelectFilter";
 import { Text } from "../../components/Text";
 import { Course, Journey } from "../../interfaces";
 import { api } from "../../services/axios";
-
-
 
 export const CoursesPage = () => {
 

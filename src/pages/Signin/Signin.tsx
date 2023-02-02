@@ -39,8 +39,8 @@ export const Signin = () => {
         setLoading(false);
     };
     return (
-        <div className="flex w-full h-[90vh] justify-center md:items-center px-4 md:px-0">
-            <form onSubmit={handleSubmit(onSubmit)} className="w-96 flex flex-col gap-6 mt-12 md:mt-0">
+        <div className="flex w-full h-[90vh] justify-center mt-12 md:items-center px-4 md:px-0">
+            <form onSubmit={handleSubmit(onSubmit)} className="w-96 flex flex-col gap-6 md:mt-0">
                 <div>
                     <Heading className="text-font" size="lg">Login</Heading>
                     <Text>Insira suas credenciais para acessar a plataforma</Text>

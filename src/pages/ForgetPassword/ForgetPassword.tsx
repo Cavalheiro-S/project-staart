@@ -28,10 +28,12 @@ export const ForgetPassword = () => {
             if (error instanceof FirebaseError)
                 setError("email", { type: "manual", message: returnErrorMessage(error.code) })
         }
-        setLoading(false);
+        finally {
+            setLoading(false);
+        }
     };
     return (
-        <div className="flex w-full md:px-0 px-4 h-[90vh] justify-center items-center">
+        <div className="flex w-full md:px-0 px-4 h-[90vh] justify-center mt-12 md:items-center">
             <form onSubmit={handleSubmit(onSubmit)} className="w-96 flex flex-col gap-6">
                 <div>
                     <Heading size="lg">Recuperar senha</Heading>
@@ -41,7 +43,7 @@ export const ForgetPassword = () => {
                     Email
                     <Input.Root>
                         <Input.Icon><EmailOutlined className="text-gray-500 ml-2" /></Input.Icon>
-                        <Input.Input {...register("email")} type="email"/>
+                        <Input.Input {...register("email")} type="email" />
                     </Input.Root>
                     {errors.email && <Text className="text-red-500">{errors.email.message}</Text>}
                     {linkSent && <Text className="text-green-500">Link de recuperação de senha enviado para o email</Text>}

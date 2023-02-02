@@ -90,7 +90,7 @@ export const LessonPage = () => {
     }
     
     return loading ? <Loading/> : (
-        <div className="flex flex-col md:px-20 px-4 mt-20 gap-12 ">
+        <div className="flex flex-col md:px-20 px-4 mt-12 gap-12 ">
             <div className="flex gap-2" onClick={() => navigate(`/journey/${journeyId}/course/${courseId}/course`)}>
                 <ArrowBackIosOutlined className="text-primary" />
                 <Heading size="sm">{lessonTitle}</Heading>
