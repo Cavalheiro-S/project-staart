@@ -1,19 +1,16 @@
-<p align="center">
-  <img src="https://github.com/Cavalheiro-S/Assets/blob/main/Staart-Jornada-FrontEnd/Logo.svg">
-  </p>
+# 🖥️ Projeto Jornada Front End
 
-<p align="center">
-<a href="#sobre-memo">Sobre</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-<a href="#tecnologias-rocket">Tecnologias</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-<a href="#licença-scroll">Licença</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-</p>
+<div>
+  <img width="40%" alt="Journey Page" src="https://user-images.githubusercontent.com/67433096/216469934-d702ff60-3298-48f9-96bb-e368871347bb.png" />
+  <img width="40%" alt="Journeys List Page" src="https://user-images.githubusercontent.com/67433096/216470370-8eab8bb4-dba8-4bc0-a64a-264da43dc644.png" />
+<div/>
 
-
-
+## Sobre :memo:
+Este projeto tem o propósito de simular uma plataforma de cursos online , para acessar basta criar uma conta e logar na plataforma, nela você pode encontrar cursos separos por jornadas que devem ser seguidas em ordem para melhor entendimento do conteúdo
 
 ## 🚀 Tecnologias Utilizadas
 
-<table align="center">
+<table>
   <tr>
     <td align="center">
       <a href="https://www.typescriptlang.org/">
@@ -45,7 +42,6 @@
         </sub>
       </a>
     </td>
-  </tr>
     <td align="center">
       <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
         <img src="https://skillicons.dev/icons?i=js" width="65px" alt="Javascript icon"/><br>
@@ -56,18 +52,7 @@
         </sub>
       </a>
     </td>
-  </tr>
+    </tr>
 </table>
-
-## Sobre :memo:
-
-Esse é um projeto desenvolvido como conclusão da jornada de front end da plataforma 
-
-
-## Licença :scroll:
-
-> Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
 
 ##### <p align="center"> <strong> < Feito por <a href="https://github.com/Cavalheiro-S"> @Cavalheiro-S  </a> /> </strong>  :wave:
