@@ -1,9 +1,8 @@
-import { RemoveRedEyeOutlined, VisibilityOffOutlined, LockOutlined, EmailOutlined } from "@mui/icons-material"
-import { log } from "console"
+import { EmailOutlined, LockOutlined, RemoveRedEyeOutlined, VisibilityOffOutlined } from "@mui/icons-material"
 import { FirebaseError } from "firebase/app"
 import { SyntheticEvent, useState } from "react"
-import { useForm, SubmitHandler } from "react-hook-form"
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { Link, useNavigate } from "react-router-dom"
 import { Button } from "../../components/Button"
 import { Heading } from "../../components/Heading"
 import { Input } from "../../components/Input"
@@ -21,7 +20,7 @@ export const Signup = () => {
         }
     );
     const [loading, setLoading] = useState(false);
-    const { register, handleSubmit, formState: { errors }, setError } = useForm<Inputs>();
+    const { register, handleSubmit, formState: { errors }, setError , getValues} = useForm<Inputs>();
     const { signUp } = useAuth();
     const navigate = useNavigate();
     const onSubmit: SubmitHandler<Inputs> = async (data, event) => {
@@ -84,7 +83,7 @@ export const Signup = () => {
                     Confirme sua senha
                     <Input.Root>
                         <Input.Icon><LockOutlined className="ml-2 text-gray-500" /></Input.Icon>
-                        <Input.Input type="password" {...register("confirmPassword")} />
+                        <Input.Input type="password" {...register("confirmPassword", {validate: value => value === getValues("password")})} />
                         <Input.Icon>
                             {showPassword.confirmPassword ? (
                                 <RemoveRedEyeOutlined className="text-font mr-2" onClick={event => handleShowPassword(event, "confirmPassword")} />
@@ -93,6 +92,7 @@ export const Signup = () => {
                             )}
                         </Input.Icon>
                     </Input.Root>
+                    {errors.confirmPassword?.type === "validate" && <Text className="text-red-800">As senhas não coincidem</Text>}
                 </label>
                 <div className="flex flex-col gap-4">
                     <Button.Root className="w-full" disabled={loading}>
