@@ -84,4 +84,25 @@ O design do projeto teve algumas inspírações de diferentes plataformas de cur
 O design foi feito todo no software de prototipação  figma , desde da versão móvel até a de desktop. Acesse o link para visualizá-lo: 
 <a href="https://www.figma.com/file/SB7ePwZDs75YnDM2CZhJ7r/Projeto-staart?node-id=3%3A5&t=gnkfyUjtlTlRM2Jp-1">Link do Figma<a/>
 
+## ⚙ Instalando
+
+### Clonando o repositório
+```bash
+git clone https://github.com/Cavalheiro-S/staart-projeto
+```
+
+### Entrando na pasta do repositório
+```bash
+cd staart-projeto
+```
+
+### Instalando pacotes
+```bash
+npm i
+```
+
+### Iniciando o projeto
+```bash
+npm run dev
+```
 ##### <p align="center"> <strong> < Feito por <a href="https://github.com/Cavalheiro-S"> @Cavalheiro-S  </a> /> </strong>  :wave:
