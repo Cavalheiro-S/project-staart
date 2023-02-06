@@ -11,12 +11,42 @@ https://user-images.githubusercontent.com/67433096/216858965-b8cdc3b3-2fea-4e2c-
 
 <table>
   <tr>
+  <td align="center">
+      <a href="https://pt-br.reactjs.org/">
+        <img src="https://skillicons.dev/icons?i=react" width="65px" alt="React icon"/><br>
+        <sub>
+          <b>
+            <pre>ReactJS</pre>
+          </b>
+        </sub>
+      </a>
+    </td>
     <td align="center">
       <a href="https://www.typescriptlang.org/">
         <img src="https://skillicons.dev/icons?i=ts" width="65px" alt="Typescript icon"/><br>
         <sub>
           <b>
             <pre>Typescript</pre>
+          </b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
+        <img src="https://skillicons.dev/icons?i=js" width="65px" alt="Javascript icon"/><br>
+        <sub>
+          <b>
+            <pre>Javascript</pre>
+          </b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+    <a href="https://firebase.google.com/">
+        <img src="https://skillicons.dev/icons?i=firebase" width="65px" alt="Firebase icon"/><br>
+        <sub>
+          <b>
+            <pre>Firebase</pre>
           </b>
         </sub>
       </a>
@@ -32,21 +62,11 @@ https://user-images.githubusercontent.com/67433096/216858965-b8cdc3b3-2fea-4e2c-
       </a>
     </td>
     <td align="center">
-      <a href="https://pt-br.reactjs.org/">
-        <img src="https://skillicons.dev/icons?i=react" width="65px" alt="React icon"/><br>
+    <a href="https://vitejs.dev/">
+        <img src="https://skillicons.dev/icons?i=vite" width="65px" alt="Vite icon"/><br>
         <sub>
           <b>
-            <pre>ReactJS</pre>
-          </b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/">
-        <img src="https://skillicons.dev/icons?i=js" width="65px" alt="Javascript icon"/><br>
-        <sub>
-          <b>
-            <pre>Javascript</pre>
+            <pre>Vite</pre>
           </b>
         </sub>
       </a>
@@ -54,9 +74,14 @@ https://user-images.githubusercontent.com/67433096/216858965-b8cdc3b3-2fea-4e2c-
     </tr>
 </table>
 
-## Requisitos do projeto 
+## 📝 Requisitos
 Este projeto foi construído seguindo os seguintes requisitos:
 <a href="https://pricey-tarsal-1ab.notion.site/Projeto-Front-end-3f05e78b71bd49edbbed18d2d444e3d0">Requisitos<a/>
 
+## 🎨 Design 
+O design do projeto teve algumas inspírações de diferentes plataformas de curso , as principais foram a própia plataforma da <br/>
+<a href="https://app.staart.com/">Staart</a> com um tema mais claro , e a <a href="https://www.educative.io/">Educative.io<a/>.
+O design foi feito todo no software de prototipação  figma , desde da versão móvel até a de desktop. Acesse o link para visualizá-lo: 
+<a href="https://www.figma.com/file/SB7ePwZDs75YnDM2CZhJ7r/Projeto-staart?node-id=3%3A5&t=gnkfyUjtlTlRM2Jp-1">Link do Figma<a/>
 
 ##### <p align="center"> <strong> < Feito por <a href="https://github.com/Cavalheiro-S"> @Cavalheiro-S  </a> /> </strong>  :wave:
