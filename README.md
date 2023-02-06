@@ -1,12 +1,11 @@
-# 🖥️ Projeto Jornada Front End
-
-<div>
-  <img width="40%" alt="Journey Page" src="https://user-images.githubusercontent.com/67433096/216469934-d702ff60-3298-48f9-96bb-e368871347bb.png" />
-  <img width="40%" alt="Journeys List Page" src="https://user-images.githubusercontent.com/67433096/216470370-8eab8bb4-dba8-4bc0-a64a-264da43dc644.png" />
-<div/>
+# 🖥️ Plataforma de cursos online
 
 ## Sobre :memo:
-Este projeto tem o propósito de simular uma plataforma de cursos online , para acessar basta criar uma conta e logar na plataforma, nela você pode encontrar cursos separos por jornadas que devem ser seguidas em ordem para melhor entendimento do conteúdo
+O projeto simula uma plataforma de cursos online , onde o usuário cria uma conta para acessar a plataforma e pode navegar pelos cursos e jornadas. Os cursos informam logo na página principal informações sobre tempo estimado de todas as aulas, o respectivo professor autor do curso e todas as aulas do curso com seus resumos. Já as jornadas são caminhos que o usuário pode escolher para seguir uma determinada área da tecnologia para se aprender, neles é possível encontrar em sua página principal o total de cursos e tempo estimado total de todos os cursos da jornada, além também de todos os cursos presentes naquela jornada.
+
+## 🎥 Video de Apresentação do Projeto
+https://user-images.githubusercontent.com/67433096/216858965-b8cdc3b3-2fea-4e2c-b9e0-f56358e2edbf.mp4
+
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -54,5 +53,10 @@ Este projeto tem o propósito de simular uma plataforma de cursos online , para 
     </td>
     </tr>
 </table>
+
+## Requisitos do projeto 
+Este projeto foi construído seguindo os seguintes requisitos:
+<a href="https://pricey-tarsal-1ab.notion.site/Projeto-Front-end-3f05e78b71bd49edbbed18d2d444e3d0">Requisitos<a/>
+
 
 ##### <p align="center"> <strong> < Feito por <a href="https://github.com/Cavalheiro-S"> @Cavalheiro-S  </a> /> </strong>  :wave:
