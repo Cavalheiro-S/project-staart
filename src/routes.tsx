@@ -3,15 +3,17 @@ import { Container } from "./components/Container";
 import { LazyLoad } from "./components/LazyLoad";
 import { PrivateRoute } from "./components/PrivateRouter";
 import { useAuth } from "./hooks/useAuth";
+import { Suspense } from "react";
+import { Loading } from "./components/Loading";
 
 const CoursePage = LazyLoad("Course/CoursePage", "CoursePage");
 const CoursesPage = LazyLoad("Courses/Courses", "CoursesPage");
 const ForgetPassword = LazyLoad("ForgetPassword/ForgetPassword", "ForgetPassword");
 const JourneyList = LazyLoad("JourneyList/JourneyList", "JourneyList");
-const JourneyPage = LazyLoad("JourneyPage/JourneyPage","JourneyPage");
+const JourneyPage = LazyLoad("JourneyPage/JourneyPage", "JourneyPage");
 const LessonPage = LazyLoad("Lesson/LessonPage", "LessonPage");
-const Signin = LazyLoad("Signin/Signin", "Signin");
-const Signup = LazyLoad("Signup/Signup", "Signup");
+const Signin = LazyLoad("Signin", "Signin");
+const Signup = LazyLoad("Signup", "Signup");
 
 export const AppRoutes = () => {
 
@@ -29,9 +31,21 @@ export const AppRoutes = () => {
             <Routes>
                 <Route path="" element={<Container />}>
                     <Route path="/" element={renderMainPage()} />
-                    <Route path="/signin" element={<Signin />} />
-                    <Route path="/signup" element={<Signup />} />
-                    <Route path="/forgetPassword" element={<ForgetPassword />} />
+                    <Route path="/signin" element={
+                        <Suspense fallback={<Loading />}>
+                            <Signin />
+                        </Suspense>
+                    } />
+                    <Route path="/signup" element={
+                        <Suspense fallback={<Loading />}>
+                            <Signup />
+                        </Suspense>
+                    } />
+                    <Route path="/forgetPassword" element={
+                        <Suspense fallback={<Loading />}>
+                            <ForgetPassword />
+                        </Suspense>
+                    } />
                     <Route path="/journey/:id" element={
                         <PrivateRoute>
                             <JourneyPage />
