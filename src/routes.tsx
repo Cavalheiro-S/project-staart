@@ -1,16 +1,17 @@
-import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Container } from "./components/Container";
+import { LazyLoad } from "./components/LazyLoad";
 import { PrivateRoute } from "./components/PrivateRouter";
 import { useAuth } from "./hooks/useAuth";
-import { CoursePage } from "./pages/Course/CoursePage";
-import { CoursesPage } from "./pages/Courses/Courses";
-import { ForgetPassword } from "./pages/ForgetPassword/ForgetPassword";
-import { JourneyList } from "./pages/JourneyList/JourneyList";
-import { JourneyPage } from "./pages/JourneyPage/JourneyPage";
-import { LessonPage } from "./pages/Lesson/LessonPage";
-import { Signin } from "./pages/Signin/Signin";
-import { Signup } from "./pages/Signup/Signup";
+
+const CoursePage = LazyLoad("Course/CoursePage", "CoursePage");
+const CoursesPage = LazyLoad("Courses/Courses", "CoursesPage");
+const ForgetPassword = LazyLoad("ForgetPassword/ForgetPassword", "ForgetPassword");
+const JourneyList = LazyLoad("JourneyList/JourneyList", "JourneyList");
+const JourneyPage = LazyLoad("JourneyPage/JourneyPage","JourneyPage");
+const LessonPage = LazyLoad("Lesson/LessonPage", "LessonPage");
+const Signin = LazyLoad("Signin/Signin", "Signin");
+const Signup = LazyLoad("Signup/Signup", "Signup");
 
 export const AppRoutes = () => {
 

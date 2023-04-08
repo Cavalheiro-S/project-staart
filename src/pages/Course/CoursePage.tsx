@@ -13,9 +13,6 @@ import { Course, Journey, ModulesFilled } from "../../interfaces";
 import { api } from "../../services/axios";
 import { toTimeString, verifyTextSize } from "../../utils";
 
-
-
-
 export const CoursePage = () => {
 
     const [course, setCourse] = useState<Course>({} as Course);
@@ -39,8 +36,7 @@ export const CoursePage = () => {
                     api.get<Journey>(`/journeys/${journeyId}`), 
                     api.get<Course>(`/courses/${courseId}`), 
                     api.get<ModulesFilled>(`/lessons/${courseId}`)
-                ]);
-    
+                ]);                
                 setJourney(journeyResponse.data);
                 setCourse(courseResponse.data);
                 setModulesLesson(modulesLessonResponse.data);

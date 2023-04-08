@@ -81,15 +81,15 @@ export const LessonPage = () => {
         })
         const lesson = currentLesson?.lessons.find(lesson => lesson.title === lessonTitle)
 
-        
+
         return (
             <Text asChild>
-                <p>{lesson?.description}</p>
+                {lesson?.description}
             </Text>
         )
     }
-    
-    return loading ? <Loading/> : (
+
+    return loading ? <Loading /> : (
         <div className="flex flex-col md:px-20 px-4 mt-12 gap-12 ">
             <div className="flex gap-2" onClick={() => navigate(`/journey/${journeyId}/course/${courseId}/course`)}>
                 <ArrowBackIosOutlined className="text-primary" />
