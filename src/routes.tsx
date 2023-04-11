@@ -1,19 +1,41 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Container } from "./components/Container";
-import { LazyLoad } from "./components/LazyLoad";
 import { PrivateRoute } from "./components/PrivateRouter";
 import { useAuth } from "./hooks/useAuth";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { Loading } from "./components/Loading";
 
-const CoursePage = LazyLoad("Course/CoursePage", "CoursePage");
-const CoursesPage = LazyLoad("Courses/Courses", "CoursesPage");
-const ForgetPassword = LazyLoad("ForgetPassword/ForgetPassword", "ForgetPassword");
-const JourneyList = LazyLoad("JourneyList/JourneyList", "JourneyList");
-const JourneyPage = LazyLoad("JourneyPage/JourneyPage", "JourneyPage");
-const LessonPage = LazyLoad("Lesson/LessonPage", "LessonPage");
-const Signin = LazyLoad("Signin", "Signin");
-const Signup = LazyLoad("Signup", "Signup");
+const CoursePage = lazy(() => import("./pages/Course/CoursePage").then(module => {
+    return { default: module["CoursePage"] }
+}));
+
+const CoursesPage = lazy(() => import("./pages/Courses/CoursesPage").then(module => {
+    return { default: module["CoursesPage"] }
+}));
+
+const ForgetPassword = lazy(() => import("./pages/ForgetPassword/ForgetPassword").then(module => {
+    return { default: module["ForgetPassword"] }
+}));
+
+const JourneyList = lazy(() => import("./pages/JourneyList/JourneyList").then(module => {
+    return { default: module["JourneyList"] }
+}));
+
+const JourneyPage = lazy(() => import("./pages/JourneyPage/JourneyPage").then(module => {
+    return { default: module["JourneyPage"] }
+}));
+
+const LessonPage = lazy(() => import("./pages/Lesson/LessonPage").then(module => {
+    return { default: module["LessonPage"] }
+}));
+
+const Signin = lazy(() => import("./pages/Signin").then(module => {
+    return { default: module["Signin"] }
+}));
+
+const Signup = lazy(() => import("./pages/Signup").then(module => {
+    return { default: module["Signup"] }
+}));
 
 export const AppRoutes = () => {
 
